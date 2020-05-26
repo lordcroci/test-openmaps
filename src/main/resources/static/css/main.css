@@ -1,1 +1,16 @@
-#mapid { height: 180px; }
+#map-container {
+    width: 600px;
+    height: 400px;
+}
+.search-container {
+    margin: 80px 0px 30px 0px;
+}
+.place {
+    width: 500px;
+    margin: 0px 20px 0px 0px;
+}
+.suggest {
+    margin: 5px 0px 0px 0px;
+    background-color: #f3f3f3;
+    padding: 0px 10px;
+}
