@@ -74,14 +74,38 @@
                     var locations = [];
                     $.each(data, function(key, val) {
                         console.log (val);
-                        locations.push ('<div class="suggest">'.concat(val.display_name).concat('</div>'));
+                        locations.push ('<div class="suggest" '
+                                        .concat('data-lat=\"')
+                                        .concat(val.lat)
+                                        .concat('\"')
+                                        .concat('data-lon=\"')
+                                        .concat(val.lon)
+                                        .concat('\">')
+                                        .concat(val.display_name)
+                                        .concat('</div>'));
                     });
                     $('#search-result').html(locations);
+
+                    $('.suggest').on("click", function(){
+                        // e.stopPropagation();
+
+                        console.log("clicked");
+                        var lat = $(this).attr("data-lat");
+                        var lon = $(this).attr("data-lon");
+
+                        console.log("lat -- " + lat);
+                        console.log("lon -- " + lon);
+
+                        mymap.setView(new L.LatLng(lat, lon), 12, { animation: true });
+                        L.marker([lat, lon]).addTo(mymap).bindPopup("<b>Custom Marker</b>").openPopup();
+                    });
                 })
                 .always(function () {
                     console.log('always.... blah, blah, blah ...')
                 });
         });
+
+
     });
 
 </script>
